@@ -1,0 +1,42 @@
+/**********************Program to show stack operations************************************/
+
+#include<stdio.h>
+
+int main(){
+
+	int stack[10],choice,i,top=-1,item;
+
+	while(1){
+
+		printf("ENTER\n.1to push element into stack\n2.to pop element from stack\n3.to Display stack \n4.to exit\n");
+		printf("Enter your choice\n");
+		scanf("%d",&choice);
+
+		switch(choice){
+
+			case 1:printf("Enter the element to push:");
+				scanf("%d",&item);
+				top++;
+				stack[top]=item;
+				break;
+
+			case 2:printf("%d is deleted from stack",stack[top]);
+				--top;
+				break;
+
+			case 3:printf("Here is stack:\n");
+				for (i=0; i<top; i++)
+				printf("%d",stack[i]);
+				break;
+
+			case 4:return (0);
+				break;
+
+			default:printf("Invalid choice\n");
+				break;
+
+				}
+
+		}
+
+	}
