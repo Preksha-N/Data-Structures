@@ -1,0 +1,3 @@
+ /*opertions of Linked list*/
+
+#include<stdio.h>
