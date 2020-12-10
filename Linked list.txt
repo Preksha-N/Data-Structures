@@ -1,7 +1,155 @@
- /*opertions of Linked list*/
+   /******************************   Operations on Linked List    ****************************/
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<alloc.h>
-void main(){
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+        int data;
+        struct node *next;
+};
+
+    printf("\n1. Display linked list\n2. To insert item at the beginning \n3.To insert item in the middle\n4. To insert at the end\n5. To delete an item from front\n6. To delete an item from middle\n7. To delete an item from the rear end\n8. To search an element\n9. To exit\n");
+
+void transverse(struct node *head)
+{
+        struct node *ptr = head;
+        // printf("%d\n", ptr->data);
+        while (ptr != NULL)
+        {
+                printf("%d\n", ptr->data);
+                ptr = ptr->next;
+        }
+}
+
+struct node *insertionAtFirst(struct node *head, int number)
+{
+        struct node *ptr = (struct node *)malloc(sizeof(struct node));
+        ptr->data = number;
+        ptr->next = head;
+        head = ptr;
+        return head;
+}
+
+struct node *insertInMiddle(struct node *head, int number, int index)
+{
+        struct node *ptr = head;
+        struct node *value = (struct node *)malloc(sizeof(struct node));
+        int i = 0;
+        while (i != index-1)
+        {
+                ptr = ptr->next;
+                i++;
+        }
+        value->data = number;
+        value->next = ptr->next;
+        ptr->next = value;
+        return head;
+}
+
+struct node *insertAtEnd(struct node *head, int number){
+        struct node *ptr = head;
+        struct node *value = (struct node*)malloc(sizeof(struct node));
+        while(ptr->next!=NULL){
+                ptr=ptr->next;
+        }
+        value->data = number;
+        ptr->next = value;
+        value->next = NULL;
+        return head;
+}
+
+struct node* deleteAtFirst(struct node *head){
+        struct node* ptr = head;
+        head = head->next;
+        free(ptr);
+        return head;
+}
+
+struct node *deleteAtMiddle(struct node * head, int index){
+        struct node *ptr = head;
+        struct node *value = head->next;
+        int i = 0;
+        while(i!=index-1){
+                ptr=ptr->next;
+                value=value->next;
+        }
+        ptr->next=value->next;
+        free(value);
+        return head;
+}
+struct node *deleteAtEnd(struct node *head){
+        struct node *ptr = head;
+        struct node *value = head->next;
+        while(value->next!=NULL){
+                ptr = ptr->next;
+                value = value->next;
+        }
+        ptr->next=NULL;
+        free(value);
+        return head;
+}
+int searchElement(struct node *head, int number){
+        struct node *ptr = head;
+        while(ptr->next!=NULL){
+                if(ptr->data==number){
+                        return ptr->data;
+                }
+                 ptr=ptr->next;
+        }
+        return 0;
+}
+
+void main()
+{
+        int a = 1, ch, number, index;
+        struct node *head = NULL;
+     
+        while (a == 1)
+        {
+                printf("Enter your choice\n");
+                scanf("%d", &ch);
+                switch (ch)
+                {
+                
+                case 1:transverse(head);
+                        break;
+                case 2:printf("Enter the number\n");
+                        scanf("%d", &number);
+                        head = insertionAtFirst(head, number);
+                        break;
+                case 3:printf("Enter the element: ");
+                        scanf("%d", &number);
+                        printf("Enter the index: ");
+                        scanf("%d", &index);
+                        head = insertInMiddle(head, number, index);
+                        break;
+                case 4: printf("Enter the element: ");
+                        scanf("%d", &number);
+                        head = insertAtEnd(head, number);
+                        break;
+                case 5: head = deleteAtFirst(head);
+                        break;
+                case 6: printf("Enter the index: ");
+                        scanf("%d",&index);
+                        deleteAtMiddle(head, index);
+                        break;
+                case 7: deleteAtEnd(head);
+                        break;
+                case 8: printf("Enter the element\n");
+                        scanf("%d",&number);
+                        int num = searchElement(head, number);
+                        if(num == number){
+                                printf("Element found\n");
+                        } else {
+                                printf("Element not found\n");
+                        }
+                        break;
+                case 9: printf("Program Ended.....");
+                        a = 2;
+                        break;
+                default:
+                        printf("Invalid choice\n");
+                        break;
+                }
+        }
 }
