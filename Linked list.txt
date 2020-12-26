@@ -1,155 +1,306 @@
    /******************************   Operations on Linked List    ****************************/
 
+
 #include <stdio.h>
 #include <stdlib.h>
 struct node
 {
-        int data;
-        struct node *next;
+
+  int data;
+
+  struct node *link;
+
 };
 
-    printf("\n1. Display linked list\n2. To insert item at the beginning \n3.To insert item in the middle\n4. To insert at the end\n5. To delete an item from front\n6. To delete an item from middle\n7. To delete an item from the rear end\n8. To search an element\n9. To exit\n");
+typedef struct node NODE;
 
-void transverse(struct node *head)
+
+void display (struct node *head)
 {
-        struct node *ptr = head;
-        // printf("%d\n", ptr->data);
-        while (ptr != NULL)
-        {
-                printf("%d\n", ptr->data);
-                ptr = ptr->next;
-        }
+
+  NODE *ptr = head;
+
+
+  while (ptr != NULL)
+
+    {
+
+      printf ("%d\n", ptr->data);
+
+      ptr = ptr->link;
+
+    }
+
 }
 
-struct node *insertionAtFirst(struct node *head, int number)
+
+
+NODE *insertionAtFirst (NODE * head, int number)
 {
-        struct node *ptr = (struct node *)malloc(sizeof(struct node));
-        ptr->data = number;
-        ptr->next = head;
-        head = ptr;
-        return head;
+
+  NODE *ptr = (NODE *) malloc (sizeof (NODE));
+
+  ptr->data = number;
+
+  ptr->link = head;
+
+  head = ptr;
+
+  return head;
+
 }
 
-struct node *insertInMiddle(struct node *head, int number, int index)
+
+
+NODE *insertInMiddle (NODE * head, int number, int index)
 {
-        struct node *ptr = head;
-        struct node *value = (struct node *)malloc(sizeof(struct node));
-        int i = 0;
-        while (i != index-1)
-        {
-                ptr = ptr->next;
-                i++;
-        }
-        value->data = number;
-        value->next = ptr->next;
-        ptr->next = value;
-        return head;
+
+  NODE *ptr = head;
+
+  NODE *value = (NODE *) malloc (sizeof (NODE));
+
+  int i = 0;
+
+  while (i != index - 1)
+
+    {
+
+      ptr = ptr->link;
+
+      i++;
+
+    }
+
+  value->data = number;
+
+  value->link = ptr->link;
+
+  ptr->link = value;
+
+  return head;
+
 }
 
-struct node *insertAtEnd(struct node *head, int number){
-        struct node *ptr = head;
-        struct node *value = (struct node*)malloc(sizeof(struct node));
-        while(ptr->next!=NULL){
-                ptr=ptr->next;
-        }
-        value->data = number;
-        ptr->next = value;
-        value->next = NULL;
-        return head;
-}
 
-struct node* deleteAtFirst(struct node *head){
-        struct node* ptr = head;
-        head = head->next;
-        free(ptr);
-        return head;
-}
 
-struct node *deleteAtMiddle(struct node * head, int index){
-        struct node *ptr = head;
-        struct node *value = head->next;
-        int i = 0;
-        while(i!=index-1){
-                ptr=ptr->next;
-                value=value->next;
-        }
-        ptr->next=value->next;
-        free(value);
-        return head;
-}
-struct node *deleteAtEnd(struct node *head){
-        struct node *ptr = head;
-        struct node *value = head->next;
-        while(value->next!=NULL){
-                ptr = ptr->next;
-                value = value->next;
-        }
-        ptr->next=NULL;
-        free(value);
-        return head;
-}
-int searchElement(struct node *head, int number){
-        struct node *ptr = head;
-        while(ptr->next!=NULL){
-                if(ptr->data==number){
-                        return ptr->data;
-                }
-                 ptr=ptr->next;
-        }
-        return 0;
-}
-
-void main()
+NODE *insertAtEnd (NODE * head, int number)
 {
-        int a = 1, ch, number, index;
-        struct node *head = NULL;
-     
-        while (a == 1)
-        {
-                printf("Enter your choice\n");
-                scanf("%d", &ch);
-                switch (ch)
-                {
-                
-                case 1:transverse(head);
-                        break;
-                case 2:printf("Enter the number\n");
-                        scanf("%d", &number);
-                        head = insertionAtFirst(head, number);
-                        break;
-                case 3:printf("Enter the element: ");
-                        scanf("%d", &number);
-                        printf("Enter the index: ");
-                        scanf("%d", &index);
-                        head = insertInMiddle(head, number, index);
-                        break;
-                case 4: printf("Enter the element: ");
-                        scanf("%d", &number);
-                        head = insertAtEnd(head, number);
-                        break;
-                case 5: head = deleteAtFirst(head);
-                        break;
-                case 6: printf("Enter the index: ");
-                        scanf("%d",&index);
-                        deleteAtMiddle(head, index);
-                        break;
-                case 7: deleteAtEnd(head);
-                        break;
-                case 8: printf("Enter the element\n");
-                        scanf("%d",&number);
-                        int num = searchElement(head, number);
-                        if(num == number){
-                                printf("Element found\n");
-                        } else {
-                                printf("Element not found\n");
-                        }
-                        break;
-                case 9: printf("Program Ended.....");
-                        a = 2;
-                        break;
-                default:
-                        printf("Invalid choice\n");
-                        break;
-                }
-        }
+
+  NODE *ptr = head;
+
+  NODE *value = (NODE *) malloc (sizeof (NODE));
+
+  while (ptr->link != NULL)
+    {
+
+      ptr = ptr->link;
+
+    }
+
+  value->data = number;
+
+  ptr->link = value;
+
+  value->link = NULL;
+
+  return head;
+
+}
+
+
+
+NODE *deleteAtFirst (NODE * head)
+{
+
+  struct node *ptr = head;
+
+  head = head->link;
+
+  free (ptr);
+
+  return head;
+
+}
+
+
+
+NODE *deleteAtMiddle (NODE * head, int index)
+{
+
+  NODE *ptr = head;
+
+  NODE *value = head->link;
+
+  int i = 0;
+
+  while (i != index - 1)
+    {
+
+      ptr = ptr->link;
+
+      value = value->link;
+
+    }
+
+  ptr->link = value->link;
+
+  free (value);
+
+  return head;
+
+}
+
+
+NODE *deleteAtEnd (NODE * head)
+{
+
+  NODE *ptr = head;
+
+  NODE *value = head->link;
+
+  while (value->link != NULL)
+    {
+
+      ptr = ptr->link;
+
+      value = value->link;
+
+    }
+
+  ptr->link = NULL;
+
+  free (value);
+
+  return head;
+
+}
+
+
+int searchElement (NODE * head, int key)
+{
+
+  struct node *ptr = head;
+
+  while (ptr->link != NULL)
+    {
+
+      if (ptr->data ==key)
+	{
+
+	  return ptr->data;
+
+	}
+
+      ptr = ptr->link;
+
+    }
+
+  return 0;
+
+}
+
+
+
+void main ()
+{
+
+  int a = 1, choice, key, index,number;
+
+  NODE *head = NULL;
+
+    for(;;){
+        
+    
+      printf ("Enter your choice\n");
+
+      scanf ("%d", &choice);
+
+      switch (choice)
+
+	{
+
+
+	case 1:
+	  display(head);
+
+	  break;
+
+	case 2:
+	  printf ("Enter the number\n");
+
+	  scanf ("%d", &number);
+
+	  head = insertionAtFirst (head, number);
+
+	  break;
+
+	case 3:
+	  printf ("Enter the element: ");
+
+	  scanf ("%d", &number);
+
+	  printf ("Enter the index: ");
+
+	  scanf ("%d", &index);
+
+	  head = insertInMiddle (head, number, index);
+
+	  break;
+
+	case 4:
+	  printf ("Enter the element: ");
+
+	  scanf ("%d", &number);
+
+	  head = insertAtEnd (head, number);
+
+	  break;
+
+	case 5:
+	  head = deleteAtFirst (head);
+
+	  break;
+
+	case 6:
+	  printf ("Enter the index: ");
+
+	  scanf ("%d", &index);
+
+	  deleteAtMiddle (head, index);
+
+	  break;
+
+	case 7:
+	  deleteAtEnd (head);
+
+	  break;
+
+	case 8:
+	  printf ("Enter the element\n");
+
+	  scanf ("%d", &key);
+
+	  int num = searchElement (head, key);
+
+	  if (num == key)
+	    {
+
+	      printf ("Element found\n");
+
+	    }
+	  else
+	    {
+
+	      printf ("Element not found\n");
+
+	    }
+
+	  break;
+
+
+	default:exit (0);
+	
+	}
+    }
+
 }
