@@ -15,11 +15,11 @@ int main(){
 		switch(choice){
 
 			case 1: if(top==SIZE-1){
-        printf("STACK OVERFLOW");
-        return;
+        			printf("STACK OVERFLOW");
+        			return 0;
 			    
-			}
-        printf("\tEnter the element to be pushed:");
+				}
+        			printf("\tEnter the element to be pushed:");
 				scanf("%d",&item);
 				top++;
 				stack[top]=item;
@@ -32,12 +32,12 @@ int main(){
 
 			case 3: if(top==-1){
                         		printf("\tSTACK UNDERFLOW\n");
-                        		return;
+                        		return 0;
                     		}
                     		printf("\n\n\tContents of the stack are:\n");
-				    for (i=0; i<top; i++)
-				        printf("\t %d\n",stack[i]);
-				    break;
+				for (i=0; i<top; i++)
+					printf("\t %d\n",stack[i]);
+				break;
 
 			case 4:return (0);
 				    break;
