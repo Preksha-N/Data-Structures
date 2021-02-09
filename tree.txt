@@ -3,25 +3,3 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void main(){
-    
-    NODE create(node root,node item){
-        
-        if (root == NULL){
-            root=(struct node*)malloc(sizrof(struct node));
-            root->left = root->reight == NULL;
-            root->data = item;
-            return root;
-        }
-        
-        else if(root->left == NULL)
-            root->left = create(root->left, item)
-            
-        else if(root->right == NULL)
-            root->right = create(root->right, item)
-            
-        else
-            return root;
-            
-    }
-}
