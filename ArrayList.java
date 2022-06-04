@@ -1,4 +1,4 @@
-/*************************************************************************/
+/***********************************************************************/
 /*Arraylist class implements List interface and it is based on an Array data structure. It is widely used because of the functionality and flexibility it offers. */
 
 import java.util.*;
