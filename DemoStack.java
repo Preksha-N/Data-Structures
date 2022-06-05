@@ -53,7 +53,7 @@ class Stack
 	
 }
 
-public class Demo
+public class DemoStack
 {
 	public static void main(String args[])
 	{

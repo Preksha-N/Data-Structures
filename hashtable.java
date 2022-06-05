@@ -1,8 +1,8 @@
-//An Example of hashtable.  File name ' HashtableExample.java '
+//An Example of hashtable.  File name ' HashTable.java '
 import java.util.Hashtable;
 import java.util.Enumeration;
 
-public class HashtableExample {
+public class HashTable {
 
     public static void main(String[] args) {
 
