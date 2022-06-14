@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Vector {
+public class Vectords {
 
    public static void main(String args[]) {
       /* Vector of initial capacity(size) of 2 */
