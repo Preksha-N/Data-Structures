@@ -20,7 +20,7 @@ class Node {
     root = null;
     }
   
-    // Traverse Inorder
+    //Traverse Inorder
     public void traverseInOrder(Node node) {
     if (node != null) {
       traverseInOrder(node.left);
