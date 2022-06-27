@@ -9,10 +9,7 @@ class HS{
         set.add("Three");  
         set.add("Two"); 
         set.add("One");    
-            
-             
-            
-            
+          
            System.out.println(set);
           
            Iterator<String> i=set.iterator();  
