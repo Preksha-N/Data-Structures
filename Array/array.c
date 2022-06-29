@@ -1,4 +1,4 @@
-       /**************Array DataStructures*****************/
+       /*************Array DataStructures*****************/
 
 #include<stdio.h>
 int main(){
